@@ -298,6 +298,21 @@ span {
 
   border: solid 2px transparent;
 }
+.card-contents ol {
+  margin-left: 1.5rem;
+
+  color: rgba(191, 189, 189, 0.742);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+.card-contents ul {
+  margin-left: 3rem;
+
+  font-weight: 300;
+  span {
+    font-weight: 500;
+  }
+}
 
 .tool {
   background: none;
@@ -315,11 +330,22 @@ span {
   color: var(--text-color);
 
   font-family: "Fira Sans", sans-serif;
+  font-weight: bold;
+}
+
+.underline {
+  background: none;
+  background-clip: none;
+
+  color: var(--text-color);
+
+  font-family: "Fira Sans", sans-serif;
+  text-decoration: underline;
 }
 
 .column-label {
-  font-size: 2rem;
-  text-decoration: underline;
+  font-size: 2.2rem;
+  /* text-decoration: underline; */
 
   color: rgb(240, 255, 255);
   text-shadow: 0 0 7px #eaeaeada;
@@ -327,28 +353,31 @@ span {
   align-self: center;
 }
 
-ol {
-  margin-left: 1.5rem;
-
-  color: rgba(191, 189, 189, 0.742);
-  font-weight: 600;
-  font-size: 1.25rem;
+.subheading {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 300;
 }
-
 .quotation {
   font-size: 1.25rem;
   font-style: italic;
 
   color: azure;
 }
-
 .citation {
   margin-left: 1.75rem;
 
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-family: "Fira Sans", sans-serif;
   font-style: italic;
 
   color: rgba(240, 255, 255, 0.568);
+}
+.img-desc {
+  font-size: 1.35rem;
+  font-style: italic;
+
+  color: rgba(240, 255, 255, 0.808);
 }
 
 .content-column {
@@ -357,14 +386,15 @@ ol {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 2rem;
 
   width: auto;
   max-width: 100%;
 
+  font-family: "Fira Sans", sans-serif;
   font-size: 1.5rem;
 
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 1rem;
   overflow: hidden;
 }
 .content-column-twothirds {
@@ -387,7 +417,7 @@ ol {
   align-items: center;
   justify-content: center;
 
-  gap: 1rem;
+  gap: 1.5rem;
   padding: 1rem;
 
   max-width: 100%;
@@ -395,13 +425,20 @@ ol {
 
   overflow: hidden;
 }
+.content-column p {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 300;
+}
 
 .img-vert {
   max-width: 100%;
   max-height: 100%;
+  height: auto;
   object-fit: contain;
 
   box-shadow: 2px 2px 7px #360112;
+
+  flex-shrink: 1;
 }
 .img-hori {
   max-width: 100%;
@@ -409,7 +446,96 @@ ol {
   object-fit: contain;
 
   box-shadow: 0 0 7px #360112;
+  flex-shrink: 1;
 }
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+/* Add Animation */
+.modal-content,
+#caption {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Clear Floats */
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Swiper Controls: */
 
 .swiper-button-prev,
 .swiper-button-next {
