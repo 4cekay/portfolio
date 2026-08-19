@@ -51,27 +51,37 @@ contents.forEach((content) => {
   swipers.push(swiper);
 });
 
-var modal = document.getElementByClassName("myModal");
+// Image Enlargement
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-  modal.style.display = "none";
-};
-
-// Get all images and insert the clicked image inside the modal
-// Get the content of the image description and insert it inside the modal image caption
-var images = document.getElementsByTagName("img");
+// Collect all zoomable images
+var images = document.querySelectorAll(".zoom");
+// Modal components
+var modal = document.getElementById("myModal");
 var modalImg = document.getElementById("img01");
 var captionText = document.getElementById("caption");
-var i;
-for (i = 0; i < images.length; i++) {
-  images[i].onclick = function () {
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    modalImg.alt = this.alt;
-    captionText.innerHTML = this.nextElementSibling.innerHTML;
-  };
-}
+var closeBtn = document.querySelector(".close");
+
+// Image Zoom Modal
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("zoom")) {
+    modal.style.display = "flex";
+    modalImg.src = e.target.src;
+    modalImg.alt = e.target.alt;
+
+    var imageSection = e.target.closest(".img-section");
+    var imageCaption = imageSection
+      ? imageSection.querySelector(".img-desc")
+      : null;
+    captionText.innerHTML = imageCaption ? imageCaption.innerHTML : "";
+  }
+});
+
+// Close modal when clicking the close button / background
+closeBtn.onclick = function () {
+  modal.style.display = "none";
+};
+modal.onclick = function (e) {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+};

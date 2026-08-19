@@ -15,7 +15,7 @@
   --main-color: #112a58c1;
   --border-color: #002b7a;
   --button-border-color: #0b1642;
-  --header-height: 6rem;
+  --header-height: 10rem;
 }
 
 html {
@@ -309,9 +309,6 @@ span {
   margin-left: 3rem;
 
   font-weight: 300;
-  span {
-    font-weight: 500;
-  }
 }
 
 .tool {
@@ -394,7 +391,7 @@ span {
   font-family: "Fira Sans", sans-serif;
   font-size: 1.5rem;
 
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 2rem;
   overflow: hidden;
 }
 .content-column-twothirds {
@@ -412,7 +409,8 @@ span {
   padding: 1.5rem 2rem;
   overflow: hidden;
 }
-.content-column .img-section {
+.content-column .img-section,
+.content-column-twothirds .img-section {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -433,7 +431,6 @@ span {
 .img-vert {
   max-width: 100%;
   max-height: 100%;
-  height: auto;
   object-fit: contain;
 
   box-shadow: 2px 2px 7px #360112;
@@ -443,47 +440,64 @@ span {
 .img-hori {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 
   box-shadow: 0 0 7px #360112;
   flex-shrink: 1;
 }
+.img-vert:hover,
+.img-hori:hover {
+  box-shadow: 0 0 12px rgb(253, 255, 219);
 
-/* The Modal (background) */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Modal */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none; /* default */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  position: fixed;
+  top: var(--header-height); /* Underneath header */
   left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
+  right: 0;
+  bottom: 0;
+  z-index: 1000; /* On top, even over pagination */
+
+  width: 100%;
+  height: 100%;
+
   background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+
+  overflow: hidden;
 }
 
 /* Modal Content (image) */
 .modal-content {
-  margin: auto;
   display: block;
   width: 80%;
-  max-width: 700px;
+  max-width: 850px;
+  margin: 0;
 }
 
-/* Caption of Modal Image */
+/* Modal Caption */
 #caption {
-  margin: auto;
   display: block;
   width: 80%;
-  max-width: 700px;
+  max-width: 850px;
+
   text-align: center;
   color: #ccc;
+  font-size: 1.25rem;
+
   padding: 10px 0;
   height: 150px;
 }
-/* Add Animation */
+
+/* Zoom Animation */
 .modal-content,
 #caption {
   -webkit-animation-name: zoom;
@@ -513,10 +527,11 @@ span {
 /* The Close Button */
 .close {
   position: absolute;
-  top: 15px;
-  right: 35px;
+  top: 1.5rem;
+  right: 2rem;
+
   color: #f1f1f1;
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: bold;
   transition: 0.3s;
 }
