@@ -50,3 +50,38 @@ contents.forEach((content) => {
 
   swipers.push(swiper);
 });
+
+// Image Enlargement
+
+// Collect all zoomable images
+var images = document.querySelectorAll(".zoom");
+// Modal components
+var modal = document.getElementById("myModal");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+var closeBtn = document.querySelector(".close");
+
+// Image Zoom Modal
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("zoom")) {
+    modal.style.display = "flex";
+    modalImg.src = e.target.src;
+    modalImg.alt = e.target.alt;
+
+    var imageSection = e.target.closest(".img-section");
+    var imageCaption = imageSection
+      ? imageSection.querySelector(".img-desc")
+      : null;
+    captionText.innerHTML = imageCaption ? imageCaption.innerHTML : "";
+  }
+});
+
+// Close modal when clicking the close button / background
+closeBtn.onclick = function () {
+  modal.style.display = "none";
+};
+modal.onclick = function (e) {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+};

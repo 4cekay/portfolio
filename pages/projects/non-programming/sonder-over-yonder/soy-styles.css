@@ -15,7 +15,7 @@
   --main-color: #112a58c1;
   --border-color: #002b7a;
   --button-border-color: #0b1642;
-  --header-height: 6rem;
+  --header-height: 10rem;
 }
 
 html {
@@ -298,6 +298,18 @@ span {
 
   border: solid 2px transparent;
 }
+.card-contents ol {
+  margin-left: 1.5rem;
+
+  color: rgba(191, 189, 189, 0.742);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+.card-contents ul {
+  margin-left: 3rem;
+
+  font-weight: 300;
+}
 
 .tool {
   background: none;
@@ -315,11 +327,22 @@ span {
   color: var(--text-color);
 
   font-family: "Fira Sans", sans-serif;
+  font-weight: bold;
+}
+
+.underline {
+  background: none;
+  background-clip: none;
+
+  color: var(--text-color);
+
+  font-family: "Fira Sans", sans-serif;
+  text-decoration: underline;
 }
 
 .column-label {
-  font-size: 2rem;
-  text-decoration: underline;
+  font-size: 2.2rem;
+  /* text-decoration: underline; */
 
   color: rgb(240, 255, 255);
   text-shadow: 0 0 7px #eaeaeada;
@@ -327,28 +350,31 @@ span {
   align-self: center;
 }
 
-ol {
-  margin-left: 1.5rem;
-
-  color: rgba(191, 189, 189, 0.742);
-  font-weight: 600;
-  font-size: 1.25rem;
+.subheading {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 300;
 }
-
 .quotation {
   font-size: 1.25rem;
   font-style: italic;
 
   color: azure;
 }
-
 .citation {
   margin-left: 1.75rem;
 
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-family: "Fira Sans", sans-serif;
   font-style: italic;
 
   color: rgba(240, 255, 255, 0.568);
+}
+.img-desc {
+  font-size: 1.35rem;
+  font-style: italic;
+
+  color: rgba(240, 255, 255, 0.808);
 }
 
 .content-column {
@@ -357,11 +383,12 @@ ol {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 2rem;
 
   width: auto;
   max-width: 100%;
 
+  font-family: "Fira Sans", sans-serif;
   font-size: 1.5rem;
 
   padding: 1.5rem 2rem;
@@ -382,18 +409,23 @@ ol {
   padding: 1.5rem 2rem;
   overflow: hidden;
 }
-.content-column .img-section {
+.content-column .img-section,
+.content-column-twothirds .img-section {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  gap: 1rem;
+  gap: 1.5rem;
   padding: 1rem;
 
   max-width: 100%;
   max-height: 100%;
 
   overflow: hidden;
+}
+.content-column p {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 300;
 }
 
 .img-vert {
@@ -402,14 +434,123 @@ ol {
   object-fit: contain;
 
   box-shadow: 2px 2px 7px #360112;
+
+  flex-shrink: 1;
 }
 .img-hori {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+  object-fit: cover;
 
   box-shadow: 0 0 7px #360112;
+  flex-shrink: 1;
 }
+.img-vert:hover,
+.img-hori:hover {
+  box-shadow: 0 0 12px rgb(253, 255, 219);
+
+  transition: all 0.2s ease-in-out;
+}
+
+/* Modal */
+.modal {
+  display: none; /* default */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  position: fixed;
+  top: var(--header-height); /* Underneath header */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000; /* On top, even over pagination */
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.9); /* Black w/ opacity */
+
+  overflow: hidden;
+}
+
+/* Modal Content (image) */
+.modal-content {
+  display: block;
+  width: 80%;
+  max-width: 850px;
+  margin: 0;
+}
+
+/* Modal Caption */
+#caption {
+  display: block;
+  width: 80%;
+  max-width: 850px;
+
+  text-align: center;
+  color: #ccc;
+  font-size: 1.25rem;
+
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Zoom Animation */
+.modal-content,
+#caption {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoom {
+  from {
+    transform: scale(0.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+
+  color: #f1f1f1;
+  font-size: 2.5rem;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Clear Floats */
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Swiper Controls: */
 
 .swiper-button-prev,
 .swiper-button-next {
